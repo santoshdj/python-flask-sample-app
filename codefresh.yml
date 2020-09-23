@@ -3,6 +3,7 @@ stages:
   - checkout
   - package
   - test  
+  - upload
 steps:
   main_clone:
     title: Cloning main repository...
@@ -26,3 +27,11 @@ steps:
     commands: 
       - pip install pytest
       - pytest
+  MyPushStep:
+     title: Pushing to Docker Registry
+     type: push
+     stage: upload
+     tag: '${{CF_BRANCH}}'
+     candidate: '${{MyAppDockerImage}}'
+     image_name: santoshdj/pythonflasksampleapp #Change kkapelon to your dockerhub username
+     registry: dockerhub   
