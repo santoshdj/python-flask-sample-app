@@ -26,6 +26,7 @@ steps:
     stage: test 
     commands: 
       - pip install pytest
+      - pip install bandit
       - pytest
   MyPushStep:
      title: Pushing to Docker Registry
